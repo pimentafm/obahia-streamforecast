@@ -64,18 +64,20 @@ const ToolsMenu: React.FC<ToolsMenuProps> = ({ ishidden }) => {
         />
       </Popover>
 
-      <Popover placement="right" content={t('toolsmenu_hidro')}>
+      <Popover placement="right" content={t('toolsmenu_stream')}>
         <MdTrendingDown
           className="text-icon"
-          style={{ fontSize: 25, color: '#AAD3DF', cursor: 'pointer' }}
-          onClick={() => window.open('http://obahia.dea.ufv.br/hidro', '_self')}
+          style={{ fontSize: 25, color: '#1f5582', cursor: 'pointer' }}
+          onClick={() =>
+            window.open('http://obahia.dea.ufv.br/stream', '_self')
+          }
         />
       </Popover>
 
-      <Popover placement="right" content={t('toolsmenu_streamflow')}>
+      <Popover placement="right" content={t('toolsmenu_mfview')}>
         <GiMeshBall
           className="text-icon"
-          style={{ fontSize: 25, color: '#1f5582', cursor: 'pointer' }}
+          style={{ fontSize: 25, color: '#AAD3DF', cursor: 'pointer' }}
         />
       </Popover>
     </Container>

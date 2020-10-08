@@ -220,16 +220,6 @@ const Menu: React.FC<MenuProps> = ({ ishidden, map, ...rest }) => {
             layerInfoIsVisible={false}
             switchColor="#000000"
           />
-
-          <StaticLayerSwitcher
-            name="urucuia"
-            label={t('label_urucuia')}
-            handleLayerVisibility={handleLayerVisibility}
-            layerIsVisible={true}
-            legendIsVisible={false}
-            layerInfoIsVisible={false}
-            switchColor="#f5f5dc"
-          />
         </div>
         <div className="final-space"></div>
       </Content>
