@@ -12,7 +12,6 @@ import { createStringXY } from 'ol/coordinate';
 import { FiXCircle } from 'react-icons/fi';
 
 import { Container } from './styles';
-import HtmlParser from 'react-html-parser';
 
 import { useTranslation } from 'react-i18next';
 
@@ -25,7 +24,7 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
   const { t } = useTranslation();
 
   const [popcoords, setPopCoords] = useState<string>();
-  const [stations, setStations] = useState<string>();
+  const [stations, setStations] = useState<string[]>();
 
   const closePopUp = useCallback(() => {
     setStations(undefined);
@@ -74,6 +73,10 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
 
           axios.get(url).then(response => {
             let data = response.data;
+
+            data = data.split('|');
+
+            console.log(data);
             setStations(data);
           });
         },
@@ -101,19 +104,6 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
       map.addOverlay(popup);
     });
   }, [map, source]);
-
-  let tableInfoStations = (
-    <tr
-      style={{
-        background: '#fff',
-      }}
-    >
-      <td style={{ padding: `2px 5px` }}>{t('label_stations')}</td>
-      <td id="popup-value" style={{ padding: `2px 5px` }}>
-        {stations ? HtmlParser(stations) : 'Fora da camada'}
-      </td>
-    </tr>
-  );
 
   return (
     <Container>
@@ -145,7 +135,73 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
             />
           </th>
         </tr>
-        {tableInfoStations && stations ? tableInfoStations : <></>}
+
+        <tr
+          style={{
+            background: '#fff',
+          }}
+        >
+          <td style={{ padding: `2px 5px` }}>{t('popup_station')}</td>
+          <td id="popup-value" style={{ padding: `2px 5px` }}>
+            {stations ? stations[0] : 'Fora da camada'}
+          </td>
+        </tr>
+
+        <tr
+          style={{
+            background: '#fff',
+          }}
+        >
+          <td style={{ padding: `2px 5px` }}>{t('popup_location')}</td>
+          <td id="popup-value" style={{ padding: `2px 5px` }}>
+            {stations ? stations[1] : 'Fora da camada'}
+          </td>
+        </tr>
+
+        <tr
+          style={{
+            background: '#fff',
+          }}
+        >
+          <td style={{ padding: `2px 5px` }}>{t('popup_qsup')}</td>
+          <td id="popup-value" style={{ padding: `2px 5px` }}>
+            {stations ? stations[2] : 'Fora da camada'}
+          </td>
+        </tr>
+
+        <tr
+          style={{
+            background: '#fff',
+          }}
+        >
+          <td style={{ padding: `2px 5px` }}>{t('popup_qmin0105')}</td>
+          <td id="popup-value" style={{ padding: `2px 5px` }}>
+            {stations ? stations[3] : 'Fora da camada'}
+          </td>
+        </tr>
+
+        <tr
+          style={{
+            background: '#fff',
+          }}
+        >
+          <td style={{ padding: `2px 5px` }}>{t('popup_qmin0106')}</td>
+          <td id="popup-value" style={{ padding: `2px 5px` }}>
+            {stations ? stations[4] : 'Fora da camada'}
+          </td>
+        </tr>
+
+        <tr
+          style={{
+            background: '#fff',
+          }}
+        >
+          <td style={{ padding: `2px 5px` }}>{t('popup_qmin0107')}</td>
+          <td id="popup-value" style={{ padding: `2px 5px` }}>
+            {stations ? stations[2] : 'Fora da camada'}
+          </td>
+        </tr>
+
         <tr style={{ background: '#fff' }}>
           <td style={{ padding: `2px 5px`, borderRadius: `0px 0px 0px 2px` }}>
             LON, LAT

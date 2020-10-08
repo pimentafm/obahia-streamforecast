@@ -68,9 +68,6 @@ const ToolsMenu: React.FC<ToolsMenuProps> = ({ ishidden }) => {
         <MdTrendingDown
           className="text-icon"
           style={{ fontSize: 25, color: '#1f5582', cursor: 'pointer' }}
-          onClick={() =>
-            window.open('http://obahia.dea.ufv.br/stream', '_self')
-          }
         />
       </Popover>
 
@@ -78,6 +75,9 @@ const ToolsMenu: React.FC<ToolsMenuProps> = ({ ishidden }) => {
         <GiMeshBall
           className="text-icon"
           style={{ fontSize: 25, color: '#AAD3DF', cursor: 'pointer' }}
+          onClick={() =>
+            window.open('http://obahia.dea.ufv.br/mfview', '_self')
+          }
         />
       </Popover>
     </Container>
