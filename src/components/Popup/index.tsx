@@ -55,7 +55,6 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
 
     map.on('singleclick', evt => {
       setStations(undefined);
-
       let res = map.getView().getResolution();
       let proj = map.getView().getProjection();
 
@@ -76,7 +75,6 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
 
             data = data.split('|');
 
-            console.log(data);
             setStations(data);
           });
         },
@@ -141,9 +139,11 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
             background: '#fff',
           }}
         >
-          <td style={{ padding: `2px 5px` }}>{t('popup_station')}</td>
+          <td style={{ border: '1px solid black', padding: `2px 5px` }}>
+            {t('popup_station')}
+          </td>
           <td id="popup-value" style={{ padding: `2px 5px` }}>
-            {stations ? stations[0] : 'Fora da camada'}
+            {stations ? stations[0] : t('popup_clickout')}
           </td>
         </tr>
 
@@ -154,7 +154,7 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
         >
           <td style={{ padding: `2px 5px` }}>{t('popup_location')}</td>
           <td id="popup-value" style={{ padding: `2px 5px` }}>
-            {stations ? stations[1] : 'Fora da camada'}
+            {stations ? stations[1] : t('popup_clickout')}
           </td>
         </tr>
 
@@ -165,7 +165,7 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
         >
           <td style={{ padding: `2px 5px` }}>{t('popup_qsup')}</td>
           <td id="popup-value" style={{ padding: `2px 5px` }}>
-            {stations ? stations[2] : 'Fora da camada'}
+            {stations ? `${stations[2]}  m³/s` : t('popup_clickout')}
           </td>
         </tr>
 
@@ -176,7 +176,7 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
         >
           <td style={{ padding: `2px 5px` }}>{t('popup_qmin0105')}</td>
           <td id="popup-value" style={{ padding: `2px 5px` }}>
-            {stations ? stations[3] : 'Fora da camada'}
+            {stations ? `${stations[3]}  m³/s` : t('popup_clickout')}
           </td>
         </tr>
 
@@ -187,7 +187,7 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
         >
           <td style={{ padding: `2px 5px` }}>{t('popup_qmin0106')}</td>
           <td id="popup-value" style={{ padding: `2px 5px` }}>
-            {stations ? stations[4] : 'Fora da camada'}
+            {stations ? `${stations[4]}  m³/s` : t('popup_clickout')}
           </td>
         </tr>
 
@@ -198,7 +198,7 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
         >
           <td style={{ padding: `2px 5px` }}>{t('popup_qmin0107')}</td>
           <td id="popup-value" style={{ padding: `2px 5px` }}>
-            {stations ? stations[2] : 'Fora da camada'}
+            {stations ? `${stations[5]}  m³/s` : t('popup_clickout')}
           </td>
         </tr>
 
@@ -210,7 +210,7 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
             id="popup-coords"
             style={{ padding: `2px 5px`, borderRadius: `0px 0px 2px 0px` }}
           >
-            {popcoords ? popcoords : 'Clique no mapa'}
+            {popcoords ? popcoords : t('popup_clickout')}
           </td>
         </tr>
       </tbody>
