@@ -26,13 +26,9 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
 
   const [popcoords, setPopCoords] = useState<string>();
   const [stations, setStations] = useState<string>();
-  const [thickness, setThickness] = useState<string>();
-  const [head, setHead] = useState<string>();
 
   const closePopUp = useCallback(() => {
     setStations(undefined);
-    setThickness(undefined);
-    setHead(undefined);
 
     const element: HTMLElement = document.getElementById(
       'popup-class',
@@ -60,8 +56,6 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
 
     map.on('singleclick', evt => {
       setStations(undefined);
-      setThickness(undefined);
-      setHead(undefined);
 
       let res = map.getView().getResolution();
       let proj = map.getView().getProjection();
@@ -78,20 +72,9 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
             VERSION: '1.3.0',
           });
 
-          let layerName = layer.getProperties().name;
-          let varName = layerName.split('_')[1];
-
-          // console.log(varName.charAt(0).toUpperCase() + varName.slice(1));
-
           axios.get(url).then(response => {
             let data = response.data;
-            if (varName === 'stations') {
-              setStations(data);
-            } else if (varName === 'thickness') {
-              setThickness(data);
-            } else {
-              setHead(data);
-            }
+            setStations(data);
           });
         },
         { layerFilter: layer => layer.getClassName() !== 'ol-layer' },
@@ -132,24 +115,6 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
     </tr>
   );
 
-  let tableInfoThickness = (
-    <tr style={{ background: '#fff' }}>
-      <td style={{ padding: `2px 5px` }}>{t('label_thickness')}</td>
-      <td id="popup-value" style={{ padding: `2px 5px` }}>
-        {thickness ? HtmlParser(thickness) : 'Fora da camada'}
-      </td>
-    </tr>
-  );
-
-  let tableInfoHead = (
-    <tr style={{ background: '#fff' }}>
-      <td style={{ padding: `2px 5px` }}>{t('label_head')}</td>
-      <td id="popup-value" style={{ padding: `2px 5px` }}>
-        {head ? HtmlParser(head) : 'Fora da camada'}
-      </td>
-    </tr>
-  );
-
   return (
     <Container>
       <tbody
@@ -181,8 +146,6 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
           </th>
         </tr>
         {tableInfoStations && stations ? tableInfoStations : <></>}
-        {tableInfoThickness && thickness ? tableInfoThickness : <></>}
-        {tableInfoHead && head ? tableInfoHead : <></>}
         <tr style={{ background: '#fff' }}>
           <td style={{ padding: `2px 5px`, borderRadius: `0px 0px 0px 2px` }}>
             LON, LAT
