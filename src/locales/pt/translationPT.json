@@ -5,6 +5,7 @@
   "description_end": "podem ser encontradas em",
   "description_terms": "O uso dessas informações implica no aceite da exoneração de responsabilidade especificada em",
   "label_year": "ano",
+  "label_stations": "Estações telemétricas",
   "label_hidrography": "Hidrografia",
   "label_highways": "Rodovias",
   "label_watersheds": "Bacias hidrográficas",
@@ -32,14 +33,5 @@
   "modal_info_paraghaph05": "paragrafo05",
   "modal_info_paraghaph06": "paragrafo06",
   "modal_info_paraghaph07": "paragrafo07",
-  "popup_clickout": "Fora da camada",
-  "label_plot_yaxis": "10<sup>6</sup> m<sup>3</sup>/ano",
-  "barplot_title": "Balanço de Energia",
-  "label_storage": "Armazenamento",
-  "label_constant_head": "Potencial hidráuulico",
-  "label_wells": "Poços",
-  "label_drains": "Drenagens",
-  "label_leakage": "Vazão do rio",
-  "label_recharge": "Recarga",
-  "label_total": "Total"
+  "popup_clickout": "Fora da camada"
 }

@@ -5,6 +5,7 @@
   "description_end": "can be found at",
   "description_terms": "The use of this information implies acceptance of the disclaimer specified in",
   "label_year": "year",
+  "label_stations": "Telemetric stations",
   "label_hidrography": "Hidrography",
   "label_highways": "Highways",
   "label_watersheds": "Watersheds",
@@ -33,14 +34,5 @@
   "modal_info_paraghaph05": "paragraph05",
   "modal_info_paraghaph06": "paragraph06",
   "modal_info_paraghaph07": "paragraph07",
-  "popup_clickout": "Out of layer",
-  "label_plot_yaxis": "10<sup>6</sup> m<sup>3</sup>/year",
-  "barplot_title": "Energy Balance",
-  "label_storage": "Storage",
-  "label_constant_head": "Constant head",
-  "label_wells": "Wells",
-  "label_drains": "Drains",
-  "label_leakage": "River leakage",
-  "label_recharge": "Recharge",
-  "label_total": "Total"
+  "popup_clickout": "Out of layer"
 }
