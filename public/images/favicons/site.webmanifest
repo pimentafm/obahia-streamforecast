@@ -1,15 +1,15 @@
 {
-  "name": "Groundwater flow viewer",
-  "short_name": "Groundwater flow viewer",
-  "icons": [
-    {
-      "src": "/android-chrome-96x96.png",
-      "sizes": "96x96",
-      "type": "image/png"
-    }
-  ],
-  "theme_color": "#1f5582",
-  "background_color": "#1f5582",
-  "start_url": "http://obahia.dea.ufv.br/streamflow",
-  "display": "standalone"
+    "name": "Stream forecast",
+    "short_name": "Stream forecast",
+    "icons": [
+        {
+            "src": "/android-chrome-96x96.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#1f5582",
+    "background_color": "#1f5582",
+    "start_url": "http://obahia.dea.ufv.br/stream",
+    "display": "standalone"
 }
