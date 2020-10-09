@@ -14,6 +14,7 @@ import { FiXCircle } from 'react-icons/fi';
 import { Container } from './styles';
 
 import { useTranslation } from 'react-i18next';
+import { FaCircle } from 'react-icons/fa';
 
 interface PopupProps {
   map: OlMap;
@@ -34,6 +35,31 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
     ) as HTMLElement;
 
     element.style.display = 'none';
+  }, []);
+
+  const getStationStatus = useCallback((qsup, qmin) => {
+    if (qsup <= 0.7 * qmin) {
+      return (
+        <>
+          <FaCircle color="#00B157" />
+          <span> {qmin} m³/s</span>
+        </>
+      );
+    } else if (0.7 * qmin < qsup && qsup <= qmin) {
+      return (
+        <>
+          <FaCircle color="#FFBE2C" />
+          <span> {qmin} m³/s</span>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <FaCircle color="#ff0004" />
+          <span> {qmin} m³/s</span>
+        </>
+      );
+    }
   }, []);
 
   useEffect(() => {
@@ -118,6 +144,11 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
             colSpan={2}
             style={{ background: '#1f5582', borderRadius: '2px 2px 0px 0px' }}
           >
+            <span
+              style={{ fontWeight: 600, color: '#ffffff', paddingLeft: '5px' }}
+            >
+              {t('popup_window_title')}
+            </span>
             <FiXCircle
               id="close-popup"
               type="close"
@@ -139,9 +170,7 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
             background: '#fff',
           }}
         >
-          <td style={{ border: '1px solid black', padding: `2px 5px` }}>
-            {t('popup_station')}
-          </td>
+          <td style={{ padding: `2px 5px` }}>{t('popup_station')}</td>
           <td id="popup-value" style={{ padding: `2px 5px` }}>
             {stations ? stations[0] : t('popup_clickout')}
           </td>
@@ -163,7 +192,7 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
             background: '#fff',
           }}
         >
-          <td style={{ padding: `2px 5px` }}>{t('popup_qsup')}</td>
+          <td style={{ padding: `2px 5px` }}>{t('popup_qsup')} (Qsup)</td>
           <td id="popup-value" style={{ padding: `2px 5px` }}>
             {stations ? `${stations[2]}  m³/s` : t('popup_clickout')}
           </td>
@@ -174,9 +203,11 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
             background: '#fff',
           }}
         >
-          <td style={{ padding: `2px 5px` }}>{t('popup_qmin0105')}</td>
+          <td style={{ padding: `2px 5px` }}>{t('popup_qmin0105')} (Qmin)</td>
           <td id="popup-value" style={{ padding: `2px 5px` }}>
-            {stations ? `${stations[3]}  m³/s` : t('popup_clickout')}
+            {stations
+              ? getStationStatus(Number(stations[2]), Number(stations[3]))
+              : t('popup_clickout')}
           </td>
         </tr>
 
@@ -185,9 +216,11 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
             background: '#fff',
           }}
         >
-          <td style={{ padding: `2px 5px` }}>{t('popup_qmin0106')}</td>
+          <td style={{ padding: `2px 5px` }}>{t('popup_qmin0106')} (Qmin)</td>
           <td id="popup-value" style={{ padding: `2px 5px` }}>
-            {stations ? `${stations[4]}  m³/s` : t('popup_clickout')}
+            {stations
+              ? getStationStatus(Number(stations[2]), Number(stations[4]))
+              : t('popup_clickout')}
           </td>
         </tr>
 
@@ -196,9 +229,47 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
             background: '#fff',
           }}
         >
-          <td style={{ padding: `2px 5px` }}>{t('popup_qmin0107')}</td>
+          <td style={{ padding: `2px 5px` }}>{t('popup_qmin0107')} (Qmin)</td>
           <td id="popup-value" style={{ padding: `2px 5px` }}>
-            {stations ? `${stations[5]}  m³/s` : t('popup_clickout')}
+            {stations
+              ? getStationStatus(Number(stations[2]), Number(stations[5]))
+              : t('popup_clickout')}
+          </td>
+        </tr>
+
+        <tr style={{ background: '#fff' }}>
+          <td style={{ padding: `2px 5px`, borderRadius: `0px 0px 0px 2px` }}>
+            <FaCircle color="#00B157" /> {t('popup_status_low')}
+          </td>
+          <td
+            id="popup-coords"
+            style={{ padding: `2px 5px`, borderRadius: `0px 0px 2px 0px` }}
+          >
+            Qsup &le; 0.7Qmin
+          </td>
+        </tr>
+
+        <tr style={{ background: '#fff' }}>
+          <td style={{ padding: `2px 5px`, borderRadius: `0px 0px 0px 2px` }}>
+            <FaCircle color="#FFBE2C" /> {t('popup_status_moderate')}
+          </td>
+          <td
+            id="popup-coords"
+            style={{ padding: `2px 5px`, borderRadius: `0px 0px 2px 0px` }}
+          >
+            0.7Qmin &lt; Qsup &le; Qmin
+          </td>
+        </tr>
+
+        <tr style={{ background: '#fff' }}>
+          <td style={{ padding: `2px 5px`, borderRadius: `0px 0px 0px 2px` }}>
+            <FaCircle color="#ff0004" /> {t('popup_status_high')}
+          </td>
+          <td
+            id="popup-coords"
+            style={{ padding: `2px 5px`, borderRadius: `0px 0px 2px 0px` }}
+          >
+            Qsup &ge; Qmin
           </td>
         </tr>
 
