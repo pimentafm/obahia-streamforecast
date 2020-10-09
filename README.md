@@ -1,6 +1,6 @@
 <div align="center">
 <h1>OBahia - Sistêma de Inteligência Territorial Estratégica</h1>
-<h2>Visualizador do Modelo de Águas Subterrâneas - MODFLOW</h2>
+<h2>Previsão de Vazões Mínimas</h2>
 <br>
 <img width="600" src="/assets/print.png" alt="OBahia - Visualizador do Modelo de Águas Subterrâneas - MODFLOW">
 <br>
