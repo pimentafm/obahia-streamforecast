@@ -170,6 +170,17 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
             background: '#fff',
           }}
         >
+          <td style={{ fontWeight: 600, padding: `2px 5px` }}>
+            {t('popup_info')}
+          </td>
+          <td id="popup-value" style={{ padding: `2px 5px` }}></td>
+        </tr>
+
+        <tr
+          style={{
+            background: '#fff',
+          }}
+        >
           <td style={{ padding: `2px 5px` }}>{t('popup_station')}</td>
           <td id="popup-value" style={{ padding: `2px 5px` }}>
             {stations ? stations[0] : t('popup_clickout')}
@@ -196,6 +207,29 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
           <td id="popup-value" style={{ padding: `2px 5px` }}>
             {stations ? `${stations[2]}  m³/s` : t('popup_clickout')}
           </td>
+        </tr>
+
+        <tr style={{ background: '#fff' }}>
+          <td style={{ padding: `2px 5px`, borderRadius: `0px 0px 0px 2px` }}>
+            LON, LAT
+          </td>
+          <td
+            id="popup-coords"
+            style={{ padding: `2px 5px`, borderRadius: `0px 0px 2px 0px` }}
+          >
+            {popcoords ? popcoords : t('popup_clickout')}
+          </td>
+        </tr>
+
+        <tr
+          style={{
+            background: '#fff',
+          }}
+        >
+          <td style={{ fontWeight: 600, padding: `2px 5px` }}>
+            {t('popup_qmin')}
+          </td>
+          <td id="popup-value" style={{ padding: `2px 5px` }}></td>
         </tr>
 
         <tr
@@ -237,6 +271,17 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
           </td>
         </tr>
 
+        <tr
+          style={{
+            background: '#fff',
+          }}
+        >
+          <td style={{ fontWeight: 600, padding: `2px 5px` }}>
+            {t('popup_status')}
+          </td>
+          <td id="popup-value" style={{ padding: `2px 5px` }}></td>
+        </tr>
+
         <tr style={{ background: '#fff' }}>
           <td style={{ padding: `2px 5px`, borderRadius: `0px 0px 0px 2px` }}>
             <FaCircle color="#00B157" /> {t('popup_status_low')}
@@ -270,18 +315,6 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
             style={{ padding: `2px 5px`, borderRadius: `0px 0px 2px 0px` }}
           >
             Qsup &ge; Qmin
-          </td>
-        </tr>
-
-        <tr style={{ background: '#fff' }}>
-          <td style={{ padding: `2px 5px`, borderRadius: `0px 0px 0px 2px` }}>
-            LON, LAT
-          </td>
-          <td
-            id="popup-coords"
-            style={{ padding: `2px 5px`, borderRadius: `0px 0px 2px 0px` }}
-          >
-            {popcoords ? popcoords : t('popup_clickout')}
           </td>
         </tr>
       </tbody>
