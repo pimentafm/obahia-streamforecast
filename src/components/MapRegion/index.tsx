@@ -73,6 +73,7 @@ const Map: React.FC<MapProps> = () => {
 
   const telemetric_stations_source = new TileWMS({
     url: wms.defaults.baseURL + 'estacoesTelemetricas.map',
+    gutter: 130,
     params: {
       LAYERS: 'estacoes',
       TILED: true,
