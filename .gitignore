@@ -10,7 +10,7 @@
 
 # production
 /build
-/mfview
+/stream
 
 # misc
 .DS_Store
