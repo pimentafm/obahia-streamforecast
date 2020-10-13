@@ -138,7 +138,7 @@ const Menu: React.FC<MenuProps> = ({ ishidden, map, ...rest }) => {
 
         <div className="static-layers">
           <span className="span-text">
-            <label>{t('description_title')}</label> {t('description_start')}{' '}
+            <label>{t('description_title')}</label> {t('description_start')}
             <Popover
               placement="right"
               content="MODFLOW 2005: USGS Three-Dimensional Finite-Difference Ground-Water Model"
@@ -146,10 +146,9 @@ const Menu: React.FC<MenuProps> = ({ ishidden, map, ...rest }) => {
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                href="https://www.usgs.gov/software/modflow-2005-usgs-three-dimensional-finite-difference-ground-water-model"
+                href="https://www.ana.gov.br/"
               >
-                {' '}
-                MODFLOW{' '}
+                ANA
               </a>
             </Popover>
             {t('description_end')}{' '}

@@ -1,9 +1,9 @@
 {
   "appname": "Stream Water Flow Forecast",
   "description_title": "Description:",
-  "description_start": "This tool allows the customized visualization of the groundwater model results for the Alto Grande, Médio Grande, Corrente and Carinhanha river basins. More information about the flow model developed using the model",
-  "description_end": "can be found at",
-  "description_terms": "The use of this information implies acceptance of the disclaimer specified in",
+  "description_start": "This tool allows the customized visualization of flow forecast data. These forecasts were made based on data from telemetry stations of the National Water Agency (",
+  "description_end": "). More information can be accessed at ",
+  "description_terms": "O uso dessas informações implica no aceite da exoneração de responsabilidade especificada em",
   "label_year": "year",
   "label_stations": "Telemetric stations",
   "label_hidrography": "Hidrography",
