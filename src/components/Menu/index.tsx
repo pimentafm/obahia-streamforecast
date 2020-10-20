@@ -185,7 +185,7 @@ const Menu: React.FC<MenuProps> = ({ ishidden, map, ...rest }) => {
             name="hidrography"
             label={t('label_hidrography')}
             handleLayerVisibility={handleLayerVisibility}
-            layerIsVisible={false}
+            layerIsVisible={true}
             legendIsVisible={false}
             layerInfoIsVisible={false}
             switchColor="#0000ff"

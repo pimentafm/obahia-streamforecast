@@ -32,7 +32,7 @@ const Map: React.FC<MapProps> = () => {
   );
 
   const [highways] = useState(new TileLayer({ visible: false }));
-  const [hidrography] = useState(new TileLayer({ visible: false }));
+  const [hidrography] = useState(new TileLayer({ visible: true }));
   const [watersheds] = useState(new TileLayer({ visible: true }));
   const [counties] = useState(new TileLayer({ visible: false }));
 
