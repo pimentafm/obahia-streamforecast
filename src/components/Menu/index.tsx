@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
+import MathJax from 'react-mathjax2';
+
 import HtmlParser from 'react-html-parser';
 
 import { Modal, Popover, Button } from 'antd';
@@ -32,6 +34,8 @@ interface MenuProps {
 const Menu: React.FC<MenuProps> = ({ ishidden, map, ...rest }) => {
   const { t } = useTranslation();
   document.title = t('appname');
+
+  const tex = `f(x) = \\int_{-\\infty}^\\infty\\hat f(\\xi)\\,e^{2 \\pi i \\xi x}\\,d\\xi`;
 
   const [hidden, setHidden] = useState(ishidden);
   const [termsOfUseModal, setTermsOfUseModal] = useState<boolean>(false);
@@ -263,35 +267,58 @@ const Menu: React.FC<MenuProps> = ({ ishidden, map, ...rest }) => {
         <p style={{ textAlign: 'justify' }}>{t('terms_of_use')}</p>
       </Modal>
 
-      <Modal
-        title={additionalInformation}
-        width={800}
-        style={{ top: 20 }}
-        visible={metadataModal}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        footer={[
-          <Button
-            key="submit"
-            style={{
-              background: '#1f5582',
-              color: '#fff',
-              borderColor: '#fff',
-            }}
-            onClick={handleOk}
-          >
-            Continue
-          </Button>,
-        ]}
-      >
-        <p style={{ textAlign: 'justify' }}>{t('modal_info_paraghaph01')}</p>
-        <p style={{ textAlign: 'justify' }}>{t('modal_info_paraghaph02')}</p>
-        <p style={{ textAlign: 'justify' }}>{t('modal_info_paraghaph03')}</p>
-        <p style={{ textAlign: 'justify' }}>{t('modal_info_paraghaph04')}</p>
-        <p style={{ textAlign: 'justify' }}>{t('modal_info_paraghaph05')}</p>
-        <p style={{ textAlign: 'justify' }}>{t('modal_info_paraghaph06')}</p>
-        <p style={{ textAlign: 'justify' }}>{t('modal_info_paraghaph07')}</p>
-      </Modal>
+      <MathJax.Context input="tex">
+        <Modal
+          title={additionalInformation}
+          width={800}
+          style={{ top: 20 }}
+          visible={metadataModal}
+          onOk={handleOk}
+          onCancel={handleCancel}
+          footer={[
+            <Button
+              key="submit"
+              style={{
+                background: '#1f5582',
+                color: '#fff',
+                borderColor: '#fff',
+              }}
+              onClick={handleOk}
+            >
+              Continue
+            </Button>,
+          ]}
+        >
+          <p style={{ textAlign: 'justify' }}>{t('modal_info_paraghaph01')}</p>
+          <p style={{ textAlign: 'justify' }}>{t('modal_info_paraghaph02')}</p>
+          <p style={{ textAlign: 'justify' }}>{t('modal_info_paraghaph03')}</p>
+
+          {<MathJax.Node>{tex}</MathJax.Node>}
+
+          <p style={{ textAlign: 'justify' }}>
+            {HtmlParser(t('modal_info_paraghaph04'))}
+          </p>
+          <p style={{ textAlign: 'justify' }}>{t('modal_info_paraghaph05')}</p>
+          <p style={{ textAlign: 'justify' }}>{t('modal_info_paraghaph06')}</p>
+          <p style={{ textAlign: 'justify' }}>{t('modal_info_paraghaph07')}</p>
+
+          <p style={{ textAlign: 'justify' }}>
+            <b>{t('modal_info_reference')}</b>
+          </p>
+
+          <p style={{ textAlign: 'justify' }}>
+            {t('modal_info_ref01')}
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://doi.org/10.1590/s1415-43662009000400009"
+            >
+              {' '}
+              https://doi.org/10.1590/s1415-43662009000400009
+            </a>
+          </p>
+        </Modal>
+      </MathJax.Context>
     </Container>
   );
 };
