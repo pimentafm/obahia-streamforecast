@@ -3,7 +3,7 @@
   "description_title": "Description:",
   "description_start": "This tool allows the customized visualization of the forecast of annual minimum flows and the water stress status of the basins for the current year. Forecasts are made only for stations of the National Water Agency (",
   "description_end": "). that contain automatic transmission of data by telemetry. More information can be accessed at ",
-  "description_terms": "O uso dessas informações implica no aceite da exoneração de responsabilidade especificada em",
+  "description_terms": "The use of this information implies acceptance of the disclaimer specified in",
   "label_year": "year",
   "label_stations": "Telemetric stations",
   "label_hidrography": "Hidrography",
