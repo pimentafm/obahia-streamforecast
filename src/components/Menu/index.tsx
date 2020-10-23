@@ -35,7 +35,7 @@ const Menu: React.FC<MenuProps> = ({ ishidden, map, ...rest }) => {
   const { t } = useTranslation();
   document.title = t('appname');
 
-  const tex = `f(x) = \\int_{-\\infty}^\\infty\\hat f(\\xi)\\,e^{2 \\pi i \\xi x}\\,d\\xi`;
+  const tex = `Q = Q_0 e^{\\alpha (t-t_0)}`;
 
   const [hidden, setHidden] = useState(ishidden);
   const [termsOfUseModal, setTermsOfUseModal] = useState<boolean>(false);
