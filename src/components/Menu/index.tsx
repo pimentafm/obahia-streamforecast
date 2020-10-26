@@ -35,7 +35,11 @@ const Menu: React.FC<MenuProps> = ({ ishidden, map, ...rest }) => {
   const { t } = useTranslation();
   document.title = t('appname');
 
-  const tex = `Q = Q_0 e^{\\alpha (t-t_0)}`;
+  const tex = `
+    \\begin{equation}
+      Q = Q_0 e^{\\alpha (t-t_0)}
+      \\label{eq:sample}
+    \\end{equation}`;
 
   const [hidden, setHidden] = useState(ishidden);
   const [termsOfUseModal, setTermsOfUseModal] = useState<boolean>(false);
@@ -267,7 +271,12 @@ const Menu: React.FC<MenuProps> = ({ ishidden, map, ...rest }) => {
         <p style={{ textAlign: 'justify' }}>{t('terms_of_use')}</p>
       </Modal>
 
-      <MathJax.Context input="tex">
+      <MathJax.Context
+        input="tex"
+        options={{
+          TeX: { equationNumbers: { autoNumber: 'AMS' } },
+        }}
+      >
         <Modal
           title={additionalInformation}
           width={800}
@@ -298,24 +307,22 @@ const Menu: React.FC<MenuProps> = ({ ishidden, map, ...rest }) => {
           <p style={{ textAlign: 'justify' }}>
             {HtmlParser(t('modal_info_paraghaph04'))}
           </p>
-          <p style={{ textAlign: 'justify' }}>{t('modal_info_paraghaph05')}</p>
-          <p style={{ textAlign: 'justify' }}>{t('modal_info_paraghaph06')}</p>
-          <p style={{ textAlign: 'justify' }}>{t('modal_info_paraghaph07')}</p>
-
           <p style={{ textAlign: 'justify' }}>
-            <b>{t('modal_info_reference')}</b>
+            {HtmlParser(t('modal_info_paraghaph05'))}
+          </p>
+          <p style={{ textAlign: 'justify' }}>{t('modal_info_paraghaph06')}</p>
+          <p style={{ textAlign: 'justify' }}>
+            {HtmlParser(t('modal_info_paraghaph07'))}
+          </p>
+
+          <p>
+            <li>{HtmlParser(t('modal_info_li01'))}</li>
+            <li>{HtmlParser(t('modal_info_li02'))}</li>
+            <li>{HtmlParser(t('modal_info_li03'))}</li>
           </p>
 
           <p style={{ textAlign: 'justify' }}>
-            {t('modal_info_ref01')}
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://doi.org/10.1590/s1415-43662009000400009"
-            >
-              {' '}
-              https://doi.org/10.1590/s1415-43662009000400009
-            </a>
+            {HtmlParser(t('modal_info_paraghaph08'))}
           </p>
         </Modal>
       </MathJax.Context>
