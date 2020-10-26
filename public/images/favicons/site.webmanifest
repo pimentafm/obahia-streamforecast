@@ -1,15 +1,19 @@
 {
-    "name": "Stream forecast",
-    "short_name": "Stream forecast",
-    "icons": [
+    "name": "Stream flow and Water Stress forecast",
+    "short_name": "Stream flow and Water Stress forecast",
+    "icons": [{
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
         {
-            "src": "/android-chrome-96x96.png",
-            "sizes": "96x96",
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
             "type": "image/png"
         }
     ],
-    "theme_color": "#1f5582",
-    "background_color": "#1f5582",
+    "theme_color": "#25689f",
+    "background_color": "#25689f",
     "start_url": "http://obahia.dea.ufv.br/stream",
     "display": "standalone"
 }
