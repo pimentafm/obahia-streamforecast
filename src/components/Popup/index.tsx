@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
+import { format, getYear, isAfter, isBefore } from 'date-fns';
 
 import OlMap from 'ol/Map';
 import TileWMS from 'ol/source/TileWMS';
@@ -27,6 +28,8 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
   const [popcoords, setPopCoords] = useState<string>();
   const [stations, setStations] = useState<string[]>();
 
+  const [forecastDate, setForecastDate] = useState(new Date(Date.now()));
+
   const closePopUp = useCallback(() => {
     setStations(undefined);
 
@@ -37,32 +40,56 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
     element.style.display = 'none';
   }, []);
 
-  const getStationStatus = useCallback((qsup, qmin) => {
-    if (qsup <= 0.7 * qmin) {
-      return (
-        <>
-          <FaCircle color="#00B157" />
-          <span> {qmin} m³/s</span>
-        </>
-      );
-    } else if (0.7 * qmin < qsup && qsup <= qmin) {
-      return (
-        <>
-          <FaCircle color="#FFBE2C" />
-          <span> {qmin} m³/s</span>
-        </>
-      );
-    } else {
-      return (
-        <>
-          <FaCircle color="#ff0004" />
-          <span> {qmin} m³/s</span>
-        </>
-      );
-    }
-  }, []);
+  const getStationStatus = useCallback(
+    (qsup, qmin) => {
+      if (qmin === 0) {
+        return t('label_withoutforecast');
+      }
+
+      if (qsup <= 0.7 * qmin) {
+        return (
+          <>
+            <FaCircle color="#00B157" />
+            <span> {qmin} m³/s</span>
+          </>
+        );
+      } else if (0.7 * qmin < qsup && qsup <= qmin) {
+        return (
+          <>
+            <FaCircle color="#FFBE2C" />
+            <span> {qmin} m³/s</span>
+          </>
+        );
+      } else {
+        return (
+          <>
+            <FaCircle color="#ff0004" />
+            <span> {qmin} m³/s</span>
+          </>
+        );
+      }
+    },
+    [t],
+  );
 
   useEffect(() => {
+    const currentDate = new Date(Date.now());
+    if (
+      isAfter(currentDate, new Date(getYear(currentDate), 5, 1)) &&
+      isBefore(currentDate, new Date(getYear(currentDate), 6, 1))
+    ) {
+      setForecastDate(new Date(getYear(currentDate), 5, 1));
+    } else if (
+      isAfter(currentDate, new Date(getYear(currentDate), 6, 1)) &&
+      isBefore(currentDate, new Date(getYear(currentDate), 7, 1))
+    ) {
+      setForecastDate(new Date(getYear(currentDate), 5, 1));
+    } else {
+      setForecastDate(new Date(getYear(currentDate), 7, 1));
+    }
+
+    console.log(new Date(getYear(currentDate), 6, 1), currentDate);
+
     map.on('pointermove', function (evt) {
       if (evt.dragging) {
         return;
@@ -237,36 +264,12 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
             background: '#fff',
           }}
         >
-          <td style={{ padding: `2px 5px` }}>{t('popup_qmin0105')} (Qmin)</td>
+          <td style={{ padding: `2px 5px` }}>
+            {t('popup_forecast')} {format(forecastDate, 'dd/MM/yyyy')} (Qmin)
+          </td>
           <td id="popup-value" style={{ padding: `2px 5px` }}>
             {stations
               ? getStationStatus(Number(stations[2]), Number(stations[3]))
-              : t('popup_clickout')}
-          </td>
-        </tr>
-
-        <tr
-          style={{
-            background: '#fff',
-          }}
-        >
-          <td style={{ padding: `2px 5px` }}>{t('popup_qmin0106')} (Qmin)</td>
-          <td id="popup-value" style={{ padding: `2px 5px` }}>
-            {stations
-              ? getStationStatus(Number(stations[2]), Number(stations[4]))
-              : t('popup_clickout')}
-          </td>
-        </tr>
-
-        <tr
-          style={{
-            background: '#fff',
-          }}
-        >
-          <td style={{ padding: `2px 5px` }}>{t('popup_qmin0107')} (Qmin)</td>
-          <td id="popup-value" style={{ padding: `2px 5px` }}>
-            {stations
-              ? getStationStatus(Number(stations[2]), Number(stations[5]))
               : t('popup_clickout')}
           </td>
         </tr>

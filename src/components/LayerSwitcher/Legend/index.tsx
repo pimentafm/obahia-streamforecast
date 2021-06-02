@@ -5,6 +5,8 @@ import { wms } from '../../../services';
 
 import { Container } from './styles';
 
+import { useTranslation } from 'react-i18next';
+
 interface LegendProps {
   mapfile: string;
   name: string;
@@ -12,6 +14,8 @@ interface LegendProps {
 }
 
 const Legend: React.FC<LegendProps> = ({ mapfile, name, isvisible }) => {
+  const { t } = useTranslation();
+
   const [legendHTML, setlegendHTML] = useState([]);
 
   useEffect(() => {
@@ -22,11 +26,15 @@ const Legend: React.FC<LegendProps> = ({ mapfile, name, isvisible }) => {
       .then(res => {
         let html = res.data;
 
+        html = html
+          .replace('Com previsão', t('label_withforecast'))
+          .replace('Sem previsão', t('label_withoutforecast'));
+
         html = ReactHtmlParser(html);
 
         setlegendHTML(html);
       });
-  }, [mapfile, name]);
+  }, [mapfile, name, t]);
   return (
     <Container id="layerswitcher" isvisible={isvisible}>
       {legendHTML}
