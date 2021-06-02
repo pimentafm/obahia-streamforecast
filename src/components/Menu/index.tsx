@@ -176,13 +176,13 @@ const Menu: React.FC<MenuProps> = ({ ishidden, map, ...rest }) => {
         </div>
 
         <LayerSwitcher
-          mapfile="estacoesTelemetricas"
-          name="telemetric_stations"
+          mapfile="telemetryStations"
+          name="stations"
           label={t('label_stations')}
           handleLayerOpacity={handleLayerOpacity}
           handleLayerVisibility={handleLayerVisibility}
           layerIsVisible={true}
-          legendIsVisible={false}
+          legendIsVisible={true}
           layerInfoIsVisible={false}
           switchColor="#1f5582"
           downloadURL={downloadURL + ''}

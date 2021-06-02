@@ -27,8 +27,8 @@ interface MapProps {
 }
 
 const Map: React.FC<MapProps> = () => {
-  const [telemetric_stations] = useState(
-    new TileLayer({ visible: true, className: 'telemetric-layer' }),
+  const [telemetry_stations] = useState(
+    new TileLayer({ visible: true, className: 'telemetry-layer' }),
   );
 
   const [highways] = useState(new TileLayer({ visible: false }));
@@ -62,7 +62,7 @@ const Map: React.FC<MapProps> = () => {
         counties,
         highways,
         hidrography,
-        telemetric_stations,
+        telemetry_stations,
       ],
       view: view,
       interactions: defaults({
@@ -71,11 +71,11 @@ const Map: React.FC<MapProps> = () => {
     }),
   );
 
-  const telemetric_stations_source = new TileWMS({
-    url: wms.defaults.baseURL + 'estacoesTelemetricas.map',
+  const telemetry_stations_source = new TileWMS({
+    url: wms.defaults.baseURL + 'telemetryStations.map',
     gutter: 140,
     params: {
-      LAYERS: 'estacoes',
+      LAYERS: 'stations',
       TILED: true,
     },
     serverType: 'mapserver',
@@ -138,9 +138,9 @@ const Map: React.FC<MapProps> = () => {
   hidrography.setSource(hidrography_source);
   hidrography.getSource().refresh();
 
-  telemetric_stations.set('name', 'telemetric_stations');
-  telemetric_stations.setSource(telemetric_stations_source);
-  telemetric_stations.getSource().refresh();
+  telemetry_stations.set('name', 'stations');
+  telemetry_stations.setSource(telemetry_stations_source);
+  telemetry_stations.getSource().refresh();
 
   useEffect(() => {
     map.setTarget('map');
@@ -150,7 +150,7 @@ const Map: React.FC<MapProps> = () => {
     <Container id="map">
       <Menu ishidden={window.innerWidth <= 760 ? 1 : 0} map={map} />
 
-      <Popup map={map} source={[telemetric_stations_source]} />
+      <Popup map={map} source={[telemetry_stations_source]} />
 
       <Footer id="footer" map={map} />
     </Container>
