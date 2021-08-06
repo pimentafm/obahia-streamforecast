@@ -78,8 +78,7 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
       isAfter(currentDate, new Date(getYear(currentDate), 4, 1)) &&
       isBefore(currentDate, new Date(getYear(currentDate), 5, 1))
     ) {
-      setForecastDate(new Date(getYear(currentDate), 6, 1));
-      console.log('1');
+      setForecastDate(new Date(getYear(currentDate), 4, 1));
     } else if (
       isAfter(currentDate, new Date(getYear(currentDate), 5, 1)) &&
       isBefore(currentDate, new Date(getYear(currentDate), 6, 1))
