@@ -75,18 +75,18 @@ const Popup: React.FC<PopupProps> = ({ map, source }) => {
   useEffect(() => {
     const currentDate = new Date(Date.now());
     if (
+      isAfter(currentDate, new Date(getYear(currentDate), 4, 1)) &&
+      isBefore(currentDate, new Date(getYear(currentDate), 5, 1))
+    ) {
+      setForecastDate(new Date(getYear(currentDate), 6, 1));
+      console.log('1');
+    } else if (
       isAfter(currentDate, new Date(getYear(currentDate), 5, 1)) &&
       isBefore(currentDate, new Date(getYear(currentDate), 6, 1))
     ) {
       setForecastDate(new Date(getYear(currentDate), 5, 1));
-      console.log('1');
-    } else if (
-      isAfter(currentDate, new Date(getYear(currentDate), 6, 1)) &&
-      isBefore(currentDate, new Date(getYear(currentDate), 7, 1))
-    ) {
-      setForecastDate(new Date(getYear(currentDate), 6, 1));
     } else {
-      setForecastDate(new Date(getYear(currentDate), 7, 1));
+      setForecastDate(new Date(getYear(currentDate), 6, 1));
     }
 
     map.on('pointermove', function (evt) {
